@@ -8,4 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class PostsViewModel @Inject constructor(private val postsRepository: PostsRepository): ViewModel() {
 
+    fun getPosts() = postsRepository.getPosts()
+
 }
