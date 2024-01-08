@@ -28,11 +28,11 @@ The project structure is organized based on the MVVM-Clean Architecture, separat
 
 ### app: 
 Contains the main application code, UI components, and is responsible for coordinating the interaction between the presentation and domain layers.
-### data: 
+### repository: 
 Manages data-related operations, including repositories and data sources.
-### domain: 
+### di: 
 Houses the business logic and use cases, representing the core functionality of the application.
-### presentation: 
+### ui: 
 Handles the presentation logic, including ViewModels and UI-related components.
 # Getting Started
 
