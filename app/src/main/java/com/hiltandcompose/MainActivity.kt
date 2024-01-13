@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.hiltandcompose.resource.Resource
 import com.hiltandcompose.resource.Status
+import com.hiltandcompose.resource.request.LoginRequest
 import com.hiltandcompose.ui.theme.HiltAndComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -45,7 +46,8 @@ class MainActivity : ComponentActivity() {
 fun Greeting(viewModel: PostsViewModel = hiltViewModel()) {
 
     LaunchedEffect(key1 = true){
-        viewModel.getPosts().collectLatest {response->
+        val loginRequest = LoginRequest("admin", "password123")
+        viewModel.login(loginRequest).collectLatest {response->
             when(response.status){
                 Status.LOADING-> Log.i("ApiResponse","Loading")
                 Status.SUCCESS-> Log.i("ApiResponse","SUCCESS")
