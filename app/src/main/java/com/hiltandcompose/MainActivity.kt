@@ -17,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.hiltandcompose.resource.Resource
+import com.hiltandcompose.resource.Status
 import com.hiltandcompose.ui.theme.HiltAndComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -42,7 +44,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(viewModel: PostsViewModel = hiltViewModel()) {
 
-    val response by viewModel.getPosts().collectAsState(ArrayList<PostResponse>())
+    LaunchedEffect(key1 = true){
+        viewModel.getPosts().collectLatest {response->
+            when(response.status){
+                Status.LOADING-> Log.i("ApiResponse","Loading")
+                Status.SUCCESS-> Log.i("ApiResponse","SUCCESS")
+                Status.ERROR-> Log.i("ApiResponse","ERROR")
+            }
+        }
 
-    Log.i("MyApiCall", Gson().toJson(response))
+    }
+
+
 }
